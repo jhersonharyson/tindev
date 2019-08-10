@@ -1,14 +1,18 @@
-const express = require("express");
-const routes = require("./routes");
-const mongoose =  require('mongoose')
-
+const express = require('express')
+const routes = require('./routes')
+const mongoose = require('mongoose')
 
 const server = express()
 
 // connection database
-mongoose.connect('mongodb://oministack8:oministack8@ds261567.mlab.com:61567/oministack_8')
+mongoose.connect(
+  'mongodb://oministack8:oministack8@ds261567.mlab.com:61567/oministack_8',
+  {
+    useNewUrlParser: true
+  }
+)
 
+server.use(express.json())
+server.use(routes)
 
-server.use(routes);
-
-server.listen(3333, () => {});
+server.listen(3333, () => {})
